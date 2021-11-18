@@ -6,7 +6,7 @@ public class Article{
     protected String nom ;
     protected String marque ;
 
-   
+   //Encore un test, promis c'est le dernier
     public Article(float prix, int stock, String nom, String marque){
         this.prix = prix ; 
         this.stock = stock;
