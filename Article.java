@@ -1,4 +1,4 @@
-public class Article{
+public abstract class Article{
     protected static int idCounter ;
     protected int id ; 
     protected float prix ;
@@ -15,29 +15,17 @@ public class Article{
         this.id = idCounter ; 
     }
 
-    public String toString(){
-        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
-    }
+    public abstract String toString() ;
 
-    public int getId(){
-        return id ;
-    }
+    public abstract int getId() ; 
     
-    public float getPrix(){
-        return prix ;
-    }
+    public abstract float getPrix();
 
-    public int getStock(){
-        return stock ; 
-    }
+    public abstract int getStock();
 
-    public String getNom(){
-        return nom ; 
-    }
+    public abstract String getNom() ; 
 
-    public String getMarque(){
-        return marque ; 
-    }
+    public abstract String getMarque() ; 
 
 }
 

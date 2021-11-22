@@ -28,7 +28,11 @@ public class Commande {
         return this.client;
     }
 
-    
+    public ArrayList<Achat> getAchats(){
+        return achats ; 
+    }
+
+
 
 
 
