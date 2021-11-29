@@ -1,33 +1,38 @@
-import java.io.* ; 
+import java.util.ArrayList;
+import java.io.*;
+import java.util.regex.*;
+import java.util.Scanner;
+
+
 
 public class Main{
+    private static ArrayList<Article> arrayListArticles;
+    private static ArrayList<Client> arrayListClients ; 
+    private static ArrayList<Achat> arrayListAchat ;
+    private static ArrayList<Commande> arrayListCommande ;
+
+    private static ArrayList<ArrayList<String>> fileToLArrayList(String filePath){
+        ArrayList<ArrayList<String>> listeOfListe = new ArrayList<ArrayList<String>>();
+        try{
+            Pattern p = Pattern.compile("([\\w]*)/([\\w]*)/([\\w]*)"); 
+            Scanner s = new Scanner(new File(filePath)) ;
+            while (s.hasNextLine()){
+                Matcher m = p.matcher(s.nextLine());
+                ArrayList<String> liste = new ArrayList<String>();
+                for(int i=0; i<=m.groupCount(); i++){
+                    liste.add(m.group(i));
+                }
+                listeOfListe.add(liste);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        return listeOfListe ; 
+    }
 
     public static void main(String[] args) {
-        try{
-            Article velo1 = new Velo(130, 11, "superDescente", "MegaVTT");
-            Article velo2 = new Velo(1000, 2, "Viktor", "Shindelhauler");
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("articles.txt"));
-            oos.writeObject(velo1);
-            oos.writeObject(velo2);
-            oos.close();
-        }catch(FileNotFoundException e){
-            e.printStackTrace() ; 
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("articles.txt")) ; 
-            Velo vtt = (Velo) ois.readObject() ; 
-            System.out.println(vtt.toString());
-            ois.close();
-        }catch(FileNotFoundException e){
-            e.printStackTrace() ; 
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
+        System.out.println(fileToLArrayList("dataClient.txt"));
     }
 }

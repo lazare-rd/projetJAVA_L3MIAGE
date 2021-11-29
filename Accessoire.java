@@ -27,4 +27,6 @@ public class Accessoire extends Article{
     public String getMarque(){
         return marque ; 
     } 
+
+    
 }

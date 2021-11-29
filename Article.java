@@ -1,5 +1,4 @@
-import java.io.Serializable;
-public abstract class Article implements Serializable{
+public abstract class Article {
     protected static int idCounter ;
     protected int id ; 
     protected float prix ;
