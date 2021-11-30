@@ -10,11 +10,12 @@ public class Main{
     private static ArrayList<Client> arrayListClients ; 
     private static ArrayList<Achat> arrayListAchat ;
     private static ArrayList<Commande> arrayListCommande ;
-
+    
+//Essayer avec p.split()
     private static ArrayList<ArrayList<String>> fileToLArrayList(String filePath){
         ArrayList<ArrayList<String>> listeOfListe = new ArrayList<ArrayList<String>>();
         try{
-            Pattern p = Pattern.compile("([\\w]*)/([\\w]*)/([\\w]*)"); 
+            Pattern p = Pattern.compile("(([\\w]*)\\/){2,4}"); 
             Scanner s = new Scanner(new File(filePath)) ;
             while (s.hasNextLine()){
                 Matcher m = p.matcher(s.nextLine());
