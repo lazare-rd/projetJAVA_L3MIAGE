@@ -11,17 +11,17 @@ public class Main{
     private static ArrayList<Achat> arrayListAchat ;
     private static ArrayList<Commande> arrayListCommande ;
     
-//Essayer avec p.split()
+
     private static ArrayList<ArrayList<String>> fileToLArrayList(String filePath){
         ArrayList<ArrayList<String>> listeOfListe = new ArrayList<ArrayList<String>>();
         try{
-            Pattern p = Pattern.compile("(([\\w]*)\\/){2,4}"); 
+            Pattern p = Pattern.compile("/"); 
             Scanner s = new Scanner(new File(filePath)) ;
             while (s.hasNextLine()){
-                Matcher m = p.matcher(s.nextLine());
+                String[] items = p.split(s.nextLine());
                 ArrayList<String> liste = new ArrayList<String>();
-                for(int i=0; i<=m.groupCount(); i++){
-                    liste.add(m.group(i));
+                for(int i=0; i<items.length; i++){
+                    liste.add(items[i]);
                 }
                 listeOfListe.add(liste);
             }
