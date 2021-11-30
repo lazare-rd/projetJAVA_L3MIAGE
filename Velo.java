@@ -1,7 +1,9 @@
 public class Velo extends Article{
+    private String discipline ;
 
-    public Velo(float prix, int stock, String nom, String marque){
+    public Velo(float prix, int stock, String nom, String marque, String discipline){
         super(prix, stock, nom, marque) ; 
+        this.discipline = discipline ;
     }
 
     public String toString(){
@@ -27,5 +29,9 @@ public class Velo extends Article{
     public String getMarque(){
         return marque ; 
     } 
+
+    public String getDiscipline(){
+        return discipline ; 
+    }
     
 }

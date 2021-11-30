@@ -1,7 +1,9 @@
 public class Piecedetachee extends Article{
-    
-    public Piecedetachee(float prix, int stock, String nom, String marque){
+    private String[] marquesCompatibles ; 
+
+    public Piecedetachee(float prix, int stock, String nom, String marque, String[] marquesCompatibles){
         super(prix, stock, nom, marque);
+        this.marquesCompatibles = marquesCompatibles ;
     }
 
     public String toString(){
@@ -27,4 +29,8 @@ public class Piecedetachee extends Article{
     public String getMarque(){
         return marque ; 
     } 
+
+    public String[] getMarquesCompatibles(){
+        return marquesCompatibles ;
+    }
 }

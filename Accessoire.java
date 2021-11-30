@@ -1,7 +1,9 @@
 public class Accessoire extends Article{
+    private String cible ;
 
-    public Accessoire(float prix, int stock, String nom, String marque){
+    public Accessoire(float prix, int stock, String nom, String marque, String cible){
         super(prix, stock, nom, marque);
+        this.cible = cible ;
     }
 
     public String toString(){
@@ -27,6 +29,10 @@ public class Accessoire extends Article{
     public String getMarque(){
         return marque ; 
     } 
+
+    public String getCible(){
+        return cible ; 
+    }
 
     
 }
