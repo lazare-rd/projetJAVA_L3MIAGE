@@ -55,7 +55,7 @@ public class Main{
         }
         return listOfClient ;
     }
-
+    //marche pas encore
     private static ArrayList<Achat> ArrayListToAchat(String filePath, int initialCapacity){
         ArrayList<ArrayList<String>> listOfData = fileToLArrayList(filePath);
         ArrayList<Achat> listOfAchat = new ArrayList<Achat>(initialCapacity) ; 
