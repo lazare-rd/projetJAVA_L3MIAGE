@@ -1,3 +1,4 @@
+package articles;
 public class Accessoire extends Article{
     private String cible ;
 
@@ -6,33 +7,17 @@ public class Accessoire extends Article{
         this.cible = cible ;
     }
 
+    @Override
     public String toString(){
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
     }
 
-    public int getId(){
-        return id ;
-    }
-    
-    public float getPrix(){
-        return prix ; 
-    }
+	public String getCible() {
+		return cible;
+	}
 
-    public int getStock(){
-        return stock ; 
-    }
-
-    public String getNom(){
-        return nom ; 
-    }
-
-    public String getMarque(){
-        return marque ; 
-    } 
-
-    public String getCible(){
-        return cible ; 
-    }
-
+	public void setCible(String cible) {
+		this.cible = cible;
+	}
     
 }

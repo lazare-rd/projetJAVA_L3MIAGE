@@ -1,39 +1,45 @@
+package commandes;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Commande {
-    private static int idCounter ; 
+    private static int idCounter = 0 ; 
     private int id ; 
     private Client client ; 
     private ArrayList<Achat> achats ;
-    private Calendar date ; 
+    private Date date ; 
 
-    public Commande(Client client, ArrayList<Achat> achats){
+    public Commande(Client client, ArrayList<Achat> achats, Date date){
         this.client = client ; 
         this.achats = achats ;
-        idCounter+=1 ; 
-        id = idCounter ; 
-        date = Calendar.getInstance() ;
+        this.id = ++idCounter; 
+        this.date = new Date();
     }
 
-    public String getDate(){
-        return date.getTime().toString() ; 
+    
+    public Commande(Client client, ArrayList<Achat> achats){
+    	this(client, achats, new Date());
     }
+    
 
-    public int getId() {
-        return this.id;
-    }
+	public static int getIdCounter() {
+		return idCounter;
+	}
 
-    public Client getClient() {
-        return this.client;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public ArrayList<Achat> getAchats(){
-        return achats ; 
-    }
+	public Client getClient() {
+		return client;
+	}
 
+	public ArrayList<Achat> getAchats() {
+		return achats;
+	}
 
-
-
-
+	public Date getDate() {
+		return date;
+	}
 }

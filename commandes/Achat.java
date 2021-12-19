@@ -1,27 +1,28 @@
+package commandes;
+import articles.Article;
+
 public class Achat {
-    private int qte ;
+    private int quantite ;
     private Article article ; 
-    private static int idCounter ; 
-    private int id ;
 
-    public Achat(int qte, Article article){
-        this.qte = qte ;
-        this.article = article ; 
-        idCounter+=1 ;
-        id = idCounter ; 
+    public Achat(int quantite, Article article){
+        this.quantite = quantite;
+        this.article = article; 
     }
 
-    public int getQte() {
-        return this.qte;
-    }
+	public int getQuantite() {
+		return quantite;
+	}
 
-    public Article getArticle() {
-        return this.article;
-    }
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
 
-    public int getId() {
-        return this.id;
-    }
+	public Article getArticle() {
+		return article;
+	}
 
-    
+	public void setArticle(Article article) {
+		this.article = article;
+	}
 }
