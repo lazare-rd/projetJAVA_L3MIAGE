@@ -20,7 +20,7 @@ public class Client {
     }
     
     public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateInscription="
+		return "Client " + id + "[nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateInscription="
 				+  getDateInscriptionString() + "]";
 	}
 

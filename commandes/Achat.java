@@ -2,8 +2,8 @@ package commandes;
 import articles.Article;
 
 public class Achat {
-    private int quantite ;
-    private Article article ; 
+    private int quantite;
+    private Article article; 
 
     public Achat(int quantite, Article article){
         this.quantite = quantite;
@@ -24,5 +24,9 @@ public class Achat {
 
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+	
+	public float getAchatPrice() {
+		return quantite * article.getPrix();
 	}
 }

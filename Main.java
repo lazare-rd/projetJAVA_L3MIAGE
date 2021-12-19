@@ -1,8 +1,10 @@
 public class Main {
 
 	public static void main(String[] args) {
-
-        System.out.println(ProcessFiles.databaseObjectToClient("dataClient.txt").get(0).toString());
+		Boutique maBoutique = new Boutique();
+		maBoutique.addClients(ProcessFiles.databaseObjectToClient("dataClient.txt"));
+        maBoutique.addCommandes(ProcessFiles.databaseObjectToCommandes(maBoutique, "dataCommandes.txt"));
+        maBoutique.initBoutique();		
 	}
 	
 
