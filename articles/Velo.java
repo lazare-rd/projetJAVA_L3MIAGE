@@ -1,3 +1,5 @@
+package articles;
+
 public class Velo extends Article{
     private String discipline ;
 
@@ -6,32 +8,16 @@ public class Velo extends Article{
         this.discipline = discipline ;
     }
 
+    @Override
     public String toString(){
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
     }
 
-    public int getId(){
-        return id ;
-    }
-    
-    public float getPrix(){
-        return prix ; 
-    }
+	public String getDiscipline() {
+		return discipline;
+	}
 
-    public int getStock(){
-        return stock ; 
-    }
-
-    public String getNom(){
-        return nom ; 
-    }
-
-    public String getMarque(){
-        return marque ; 
-    } 
-
-    public String getDiscipline(){
-        return discipline ; 
-    }
-    
+	public void setDiscipline(String discipline) {
+		this.discipline = discipline;
+	}    
 }

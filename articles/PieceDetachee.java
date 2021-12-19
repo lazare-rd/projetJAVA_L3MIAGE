@@ -1,36 +1,26 @@
-public class Piecedetachee extends Article{
-    private String[] marquesCompatibles ; 
+package articles;
 
-    public Piecedetachee(float prix, int stock, String nom, String marque, String[] marquesCompatibles){
+import java.util.ArrayList;
+
+public class PieceDetachee extends Article{
+    private ArrayList<Article> articlesCompatibles ; 
+
+    public PieceDetachee(float prix, int stock, String nom, String marque, ArrayList<Article> articlesCompatibles){
         super(prix, stock, nom, marque);
-        this.marquesCompatibles = marquesCompatibles ;
+        this.articlesCompatibles = articlesCompatibles ;
     }
-
+    
+    @Override
     public String toString(){
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
     }
 
-    public int getId(){
-        return id ;
-    }
+	public ArrayList<Article> getarticlesCompatibles() {
+		return articlesCompatibles;
+	}
+
+	public void setVeloCompatibles(ArrayList<Article> articlesCompatibles) {
+		this.articlesCompatibles = articlesCompatibles;
+	}
     
-    public float getPrix(){
-        return prix ; 
-    }
-
-    public int getStock(){
-        return stock ; 
-    }
-
-    public String getNom(){
-        return nom ; 
-    }
-
-    public String getMarque(){
-        return marque ; 
-    } 
-
-    public String[] getMarquesCompatibles(){
-        return marquesCompatibles ;
-    }
 }
