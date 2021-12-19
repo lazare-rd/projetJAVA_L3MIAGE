@@ -8,6 +8,10 @@ import articles.Velo;
 import commandes.Client;
 import commandes.Commande;
 
+/**
+ * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
+ * @version 0.1
+ */
 public class Boutique {
 
     static ArrayList<Client> clients = new ArrayList<Client>(); 
@@ -16,11 +20,34 @@ public class Boutique {
     
     static Scanner input = new Scanner(System.in);
 
-    
+	/**
+	 * 
+	 * @return the static variable commandes
+	 */
     public static ArrayList<Client> getClients() {
 		return clients;
 	}
+
+	/**
+	 * 
+	 * @return the static variable commandes
+	 */
+	public static ArrayList<Commande> getCommandes() {
+		return commandes;
+	}
+
+	/**
+	 * 
+	 * @return the static variable articles
+	 */
+	public static ArrayList<Article> getArticles() {
+		return articles;
+	}
     
+	/**
+	 * 
+	 * @return a new client with the prompted caracteristics
+	 */
 	public Client createClient(){
 		String nom = null;
 		String prenom = null; 
@@ -36,6 +63,10 @@ public class Boutique {
 		return new Client(nom, prenom, adresse);
     }
 	
+	/**
+	 * 
+	 * @return a new article with the prompted caracteristics
+	 */
 	public Article createArticle(){
 		Article article = null;
 		int typeArticle = 0;
@@ -94,6 +125,10 @@ public class Boutique {
 		return article;
     }
 
+	/** 
+	 * 
+	 * @param client
+	 */
 	public void createClient(Client client){
 		String nom = null;
 		String prenom = null; 
@@ -108,39 +143,60 @@ public class Boutique {
 		}
     }
 
+	/**
+	 * 
+	 * @param client
+	 */
     public void addClient(Client client){
     	clients.add(client);
     }
 	
+	/**
+	 * 
+	 * @param clients
+	 */
 	public static void addClients(ArrayList<Client> clients) {
 		Boutique.clients.addAll(clients);
 	}
 
-	public static ArrayList<Commande> getCommandes() {
-		return commandes;
-	}
-
-    public void addCommande(Commande commande){
+    
+	/** 
+	 * @param commande
+	 */
+	public void addCommande(Commande commande){
     	commandes.add(commande);
     }
 	
+	
+	/** 
+	 * @param commandes
+	 */
 	public static void addCommandes(ArrayList<Commande> commandes) {
 		Boutique.commandes.addAll(commandes);
 	}
 
-	public static ArrayList<Article> getArticles() {
-		return articles;
-	}
-
-    public void addArticle(Article article){
+    
+	/** 
+	 * @param article
+	 */
+	public void addArticle(Article article){
     	articles.add(article);
     }
 	
+	
+	/** 
+	 * @param articles
+	 */
 	public static void addArticles(ArrayList<Article> articles) {
 		Boutique.articles.addAll(articles);
 	}
 	        
-    public static Article findArticleByID(int id){
+    
+	/** 
+	 * @param id
+	 * @return Article
+	 */
+	public static Article findArticleByID(int id){
     	for(Article article : articles) {
     		if(article.getId() == id) {
     			return article;
@@ -149,7 +205,12 @@ public class Boutique {
 		return null;
     }
     
-    public static Client findClientByID(int id){
+    
+	/** 
+	 * @param id
+	 * @return Client
+	 */
+	public static Client findClientByID(int id){
     	for(Client client : clients) {
     		if(client.getId() == id) {
     			return client;

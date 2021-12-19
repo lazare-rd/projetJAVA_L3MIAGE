@@ -14,8 +14,17 @@ import commandes.Achat;
 import commandes.Client;
 import commandes.Commande;
 
+/**
+ * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
+ * @version 0.1
+ */
 public class ProcessFiles {
 		
+    
+    /** 
+     * @param filePath
+     * @return ArrayList<String[]>
+     */
     static ArrayList<String[]> readDatabaseFile(String filePath){
         ArrayList<String[]> databaseObject = new ArrayList<String[]>();
         try{
@@ -32,6 +41,11 @@ public class ProcessFiles {
         return databaseObject; 
     }
 
+    
+    /** 
+     * @param filePath
+     * @return ArrayList<Velo>
+     */
     static ArrayList<Velo> databaseObjectToVelo(String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Velo> velos = new ArrayList<Velo>(); 
@@ -42,6 +56,11 @@ public class ProcessFiles {
         return velos ;
     }
 
+    
+    /** 
+     * @param filePath
+     * @return ArrayList<Client>
+     */
     static ArrayList<Client> databaseObjectToClient(String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Client> clients = new ArrayList<Client>(); 
@@ -52,6 +71,11 @@ public class ProcessFiles {
         return clients ;
     }
     
+    
+    /** 
+     * @param filePath
+     * @return ArrayList<Article>
+     */
     static ArrayList<Article> databaseObjectToArticles(String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Article> articles = new ArrayList<Article>(); 
@@ -78,6 +102,11 @@ public class ProcessFiles {
         return articles ;
     }
     
+    
+    /** 
+     * @param filePath
+     * @return ArrayList<Commande>
+     */
     static ArrayList<Commande> databaseObjectToCommandes(String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Commande> commandes = new ArrayList<Commande>(); 

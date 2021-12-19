@@ -1,4 +1,9 @@
 package articles;
+
+/**
+ * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
+ * @version 0.1
+ */
 public class Accessoire extends Article{
     private String cible ;
 
@@ -7,16 +12,28 @@ public class Accessoire extends Article{
         this.cible = cible ;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
     }
 
-	public String getCible() {
+	
+    /** 
+     * @return String
+     */
+    public String getCible() {
 		return cible;
 	}
 
-	public void setCible(String cible) {
+	
+    /** 
+     * @param cible
+     */
+    public void setCible(String cible) {
 		this.cible = cible;
 	}
     

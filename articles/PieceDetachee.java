@@ -2,6 +2,10 @@ package articles;
 
 import java.util.ArrayList;
 
+/**
+ * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
+ * @version 0.1
+ */
 public class PieceDetachee extends Article{
     private ArrayList<Article> articlesCompatibles ; 
 
@@ -10,16 +14,28 @@ public class PieceDetachee extends Article{
         this.articlesCompatibles = articlesCompatibles ;
     }
     
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
     }
 
-	public ArrayList<Article> getarticlesCompatibles() {
+	
+    /** 
+     * @return ArrayList<Article>
+     */
+    public ArrayList<Article> getarticlesCompatibles() {
 		return articlesCompatibles;
 	}
 
-	public void setVeloCompatibles(ArrayList<Article> articlesCompatibles) {
+	
+    /** 
+     * @param articlesCompatibles
+     */
+    public void setVeloCompatibles(ArrayList<Article> articlesCompatibles) {
 		this.articlesCompatibles = articlesCompatibles;
 	}
     

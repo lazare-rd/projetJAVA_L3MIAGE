@@ -1,5 +1,9 @@
 package articles;
 
+/**
+ * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
+ * @version 0.1
+ */
 public class Velo extends Article{
     private String discipline ;
 
@@ -8,16 +12,28 @@ public class Velo extends Article{
         this.discipline = discipline ;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
     }
 
-	public String getDiscipline() {
+	
+    /** 
+     * @return String
+     */
+    public String getDiscipline() {
 		return discipline;
 	}
 
-	public void setDiscipline(String discipline) {
+	
+    /** 
+     * @param discipline
+     */
+    public void setDiscipline(String discipline) {
 		this.discipline = discipline;
 	}    
 }
