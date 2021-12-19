@@ -8,11 +8,17 @@ import java.util.Date;
  */
 public class Commande {
     private static int idCounter = 0 ; 
-    private int id ; 
-    private Client client ; 
-    private ArrayList<Achat> achats ;
-    private Date date ; 
+    private int id; 
+    private Client client; 
+    private ArrayList<Achat> achats;
+    private Date date; 
 
+	/**
+	 * 
+	 * @param client
+	 * @param achats
+	 * @param date
+	 */
     public Commande(Client client, ArrayList<Achat> achats, Date date){
         this.client = client ; 
         this.achats = achats ;
@@ -20,11 +26,23 @@ public class Commande {
         this.date = new Date();
     }
 
-    
+	/**
+	 * 
+	 * @param client
+	 * @param achats
+	 */
     public Commande(Client client, ArrayList<Achat> achats){
     	this(client, achats, new Date());
     }
     
+
+    
+	/** 
+	 * @return String
+	 */
+	public String toString() {
+		return "Commande [id=" + id + ", client=" + client + ", achats=" + achats + ", date=" + date + "]";
+	}
 
 	
 	/** 

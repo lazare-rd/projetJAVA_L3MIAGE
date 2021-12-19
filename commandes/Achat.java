@@ -6,8 +6,8 @@ import articles.Article;
  * @version 0.1
  */
 public class Achat {
-    private int quantite ;
-    private Article article ; 
+    private int quantite;
+    private Article article; 
 
 	/**
 	 * 
@@ -49,5 +49,9 @@ public class Achat {
 	 */
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+	
+	public float getAchatPrice() {
+		return quantite * article.getPrix();
 	}
 }

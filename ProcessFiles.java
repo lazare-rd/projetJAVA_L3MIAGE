@@ -71,12 +71,13 @@ public class ProcessFiles {
         return clients ;
     }
     
-    
+
     /** 
+     * @param boutique
      * @param filePath
      * @return ArrayList<Article>
      */
-    static ArrayList<Article> databaseObjectToArticles(String filePath){
+    static ArrayList<Article> databaseObjectToArticles(Boutique boutique, String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Article> articles = new ArrayList<Article>(); 
         for (String[] data : databaseObject){
@@ -92,7 +93,7 @@ public class ProcessFiles {
         			ArrayList<Article> articlesCompatibles = new ArrayList<Article>();
         			String[] idsArticlesCompatibles = data[5].split(",");
         			for(String idArticleCompatible : idsArticlesCompatibles) {
-        				articlesCompatibles.add(Boutique.findArticleByID(Integer.parseInt(idArticleCompatible)));
+        				articlesCompatibles.add(boutique.findArticleByID(Integer.parseInt(idArticleCompatible)));
         			}
         			article = new PieceDetachee(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], articlesCompatibles);
         			break;
@@ -102,28 +103,29 @@ public class ProcessFiles {
         return articles ;
     }
     
+
+
     
     /** 
+     * @param boutique
      * @param filePath
      * @return ArrayList<Commande>
      */
-    static ArrayList<Commande> databaseObjectToCommandes(String filePath){
+    static ArrayList<Commande> databaseObjectToCommandes(Boutique boutique, String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Commande> commandes = new ArrayList<Commande>(); 
         for (String[] data : databaseObject){
-    		int idClient = Integer.parseInt(data[0]);
-        	Client client = Boutique.findClientByID(idClient);
-
+    		int idClient = Integer.parseInt(data[0]);	
+        	Client client = boutique.findClientByID(idClient);
         	ArrayList<Achat> achats = new ArrayList<Achat>();
         	String[] achatsString = data[1].split(",");
         	for (String achatString : achatsString) {
         		int idProduit = Integer.parseInt(achatString.split(":")[0]);
         		int quantite = Integer.parseInt(achatString.split(":")[1]);
-        		achats.add(new Achat(quantite, Boutique.findArticleByID(idProduit)));
+        		achats.add(new Achat(quantite, boutique.findArticleByID(idProduit)));
         	}
         	
         	Date date;
-        	
         	Commande commande;
 			try {
 				date = new SimpleDateFormat("dd/MM/yyyy").parse(data[2]);

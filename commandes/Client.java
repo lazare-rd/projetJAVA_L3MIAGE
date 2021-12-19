@@ -15,6 +15,12 @@ public class Client {
     private String adresse ; 
     private Date dateInscription ; 
 
+	/**
+	 * 
+	 * @param nom
+	 * @param prenom
+	 * @param adresse
+	 */
     public Client(String nom, String prenom, String adresse){
         this.nom = nom ;
         this.prenom = prenom ;
@@ -23,12 +29,14 @@ public class Client {
         this.id = ++idCounter;
     }
     
+
+
     
 	/** 
 	 * @return String
 	 */
 	public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateInscription="
+		return "Client " + id + "[nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateInscription="
 				+  getDateInscriptionString() + "]";
 	}
 
