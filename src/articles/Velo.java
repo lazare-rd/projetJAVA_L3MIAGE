@@ -1,4 +1,4 @@
-package src.articles;
+package articles;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -16,9 +16,12 @@ public class Velo extends Article{
     /** 
      * @return String
      */
-    @Override
     public String toString(){
+<<<<<<< HEAD
         return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque + " ; " + discipline; 
+=======
+        return super.toString() + "  Discipline : " + discipline; 
+>>>>>>> 847137b126da292b1441f7d210bc8549e6376165
     }
 
 	
@@ -36,4 +39,9 @@ public class Velo extends Article{
     public void setDiscipline(String discipline) {
 		this.discipline = discipline;
 	}    
+    
+	public String toCSV() {
+		return "velo;" + super.toCSV() + ";" + discipline + "\n";
+	}; 
+
 }

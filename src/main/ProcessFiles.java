@@ -1,20 +1,22 @@
-package src ; 
+package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import src.articles.Accessoire;
-import src.articles.Article;
-import src.articles.PieceDetachee;
-import src.articles.Velo;
-import src.commandes.Achat;
-import src.commandes.Client;
-import src.commandes.Commande;
+import articles.Accessoire;
+import articles.Article;
+import articles.PieceDetachee;
+import articles.Velo;
+import commandes.Client;
+import commandes.Commande;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -42,6 +44,7 @@ public class ProcessFiles {
         }
         return databaseObject; 
     }
+<<<<<<< HEAD:src/ProcessFiles.java
 
     
     /** 
@@ -58,6 +61,8 @@ public class ProcessFiles {
         return velos ;
     }
 
+=======
+>>>>>>> 847137b126da292b1441f7d210bc8549e6376165:src/main/ProcessFiles.java
     
     /** 
      * @param filePath
@@ -82,30 +87,27 @@ public class ProcessFiles {
     public static ArrayList<Article> databaseObjectToArticles(Boutique boutique, String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Article> articles = new ArrayList<Article>(); 
+        
         for (String[] data : databaseObject){
-        	Article article = null;
-        	switch(data[0].toLowerCase()) {
-        		case "accesoire":
-        			article = new Accessoire(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], data[5]);
-        			break;
-        		case "velo":
-        			article = new Velo(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], data[5]);
-        			break;
-        		case "piecedetachee":
-        			ArrayList<Article> articlesCompatibles = new ArrayList<Article>();
-        			String[] idsArticlesCompatibles = data[5].split(",");
-        			for(String idArticleCompatible : idsArticlesCompatibles) {
-        				articlesCompatibles.add(boutique.findArticleByID(Integer.parseInt(idArticleCompatible)));
-        			}
-        			article = new PieceDetachee(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], articlesCompatibles);
-        			break;
-        	}
-            articles.add(article);
+	        	switch(data[0].toLowerCase()) {
+	        		case "accessoire":
+	        			articles.add(new Accessoire(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], data[5]));
+	        			break;
+	        		case "velo":
+	        			articles.add(new Velo(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], data[5]));
+	        			break;
+	        		case "piecedetachee":
+	        			ArrayList<Article> articlesCompatibles = new ArrayList<Article>();
+	        			String[] idsArticlesCompatibles = data[5].split(",");
+	        			for(String idArticleCompatible : idsArticlesCompatibles) {
+	        				articlesCompatibles.add(boutique.findArticleByID(Integer.parseInt(idArticleCompatible)));
+	        			}
+	        			articles.add(new PieceDetachee(Float.parseFloat(data[1]), Integer.parseInt(data[2]), data[3], data[4], articlesCompatibles));
+	        			break;
+	        	}
         }
-        return articles ;
+        return articles;
     }
-    
-
 
     
     /** 
@@ -119,12 +121,13 @@ public class ProcessFiles {
         for (String[] data : databaseObject){
     		int idClient = Integer.parseInt(data[0]);	
         	Client client = boutique.findClientByID(idClient);
-        	ArrayList<Achat> achats = new ArrayList<Achat>();
+        	HashMap<Article, Integer> achats = new HashMap<Article, Integer>(); 
         	String[] achatsString = data[1].split(",");
         	for (String achatString : achatsString) {
         		int idProduit = Integer.parseInt(achatString.split(":")[0]);
         		int quantite = Integer.parseInt(achatString.split(":")[1]);
-        		achats.add(new Achat(quantite, boutique.findArticleByID(idProduit)));
+
+        		achats.put(boutique.findArticleByID(idProduit), quantite);
         	}
         	
         	Date date;
@@ -138,6 +141,23 @@ public class ProcessFiles {
             commandes.add(commande);
         }
         return commandes ;
+    }
+    
+    static void writeFile(String csv, String filename) {
+    	
+        try {
+        		String path = System.getProperty("user.home") + "/" + filename + ".txt";
+			File myFile = new File(path); 	
+			myFile.createNewFile();
+			FileWriter fw = new FileWriter(path);
+			fw.write(csv);
+			fw.close();
+			System.out.print("L'export a bien été réalisé au chemin suivant : " + path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
     }
     
 }

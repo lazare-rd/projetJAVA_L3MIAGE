@@ -1,4 +1,4 @@
-package src.articles;
+package articles;
 
 import java.util.ArrayList;
 
@@ -18,9 +18,8 @@ public class PieceDetachee extends Article{
     /** 
      * @return String
      */
-    @Override
     public String toString(){
-        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
+        return super.toString() + "  Articles compatibles : " + getArticlesCompatiblesString(); 
     }
 
 	
@@ -30,13 +29,35 @@ public class PieceDetachee extends Article{
     public ArrayList<Article> getarticlesCompatibles() {
 		return articlesCompatibles;
 	}
-
+    
+    public String getArticlesCompatiblesString() {
+    	String articlesCompatiblesString = "";
+    	for (Article articleCompatible : articlesCompatibles) {
+    		articlesCompatiblesString = articlesCompatiblesString + articleCompatible.getId() + " - " + articleCompatible.getNom() + "(" + articleCompatible.getMarque() + ") - ";
+    	}
+    	return articlesCompatiblesString;
+    }
 	
     /** 
      * @param articlesCompatibles
      */
     public void setVeloCompatibles(ArrayList<Article> articlesCompatibles) {
 		this.articlesCompatibles = articlesCompatibles;
+	}
+    
+	public String toCSV() {
+		return "velo;" + super.toCSV() + ";" + articlesCompatiblesToCSV() + "\n";
+	}; 
+	
+	public String articlesCompatiblesToCSV() {
+		String articlesCompatiblesCSV = "";
+		for(int i = 0; i < articlesCompatibles.size(); i++) {
+			if(i !=0) {
+				articlesCompatiblesCSV += ",";
+			}
+			articlesCompatiblesCSV += articlesCompatibles.get(i).getId();
+		}
+		return articlesCompatiblesCSV;
 	}
     
 }

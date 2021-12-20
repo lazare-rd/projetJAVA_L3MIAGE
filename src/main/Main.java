@@ -1,12 +1,4 @@
-package src ; 
-
-import src.articles.Accessoire;
-import src.articles.Article;
-import src.articles.PieceDetachee;
-import src.articles.Velo;
-import src.commandes.Achat;
-import src.commandes.Client;
-import src.commandes.Commande;
+package main;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -17,6 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		Boutique maBoutique = new Boutique();
 		maBoutique.addClients(ProcessFiles.databaseObjectToClient("dataClient.txt"));
+		maBoutique.addArticles(ProcessFiles.databaseObjectToArticles(maBoutique, "dataArticles.txt"));
         maBoutique.addCommandes(ProcessFiles.databaseObjectToCommandes(maBoutique, "dataCommandes.txt"));
         maBoutique.initBoutique();		
 	}

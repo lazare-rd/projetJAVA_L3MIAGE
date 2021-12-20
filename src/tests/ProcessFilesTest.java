@@ -1,13 +1,12 @@
-package src.tests;
+package tests;
 
 import java.util.ArrayList;
 import java.nio.file.Path;
 
-import src.ProcessFiles ;
-import src.articles.Velo;
-import src.commandes.Client;
-import src.Boutique;
-import src.articles.*;
+import commandes.Client;
+import main.Boutique;
+import articles.*;
+import main.ProcessFiles ;
 
 import org.junit.Test; 
 import static org.junit.Assert.*;

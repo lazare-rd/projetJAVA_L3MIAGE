@@ -1,15 +1,16 @@
-package src ; 
+package main;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-import src.articles.Accessoire;
-import src.articles.Article;
-import src.articles.PieceDetachee;
-import src.articles.Velo;
-import src.commandes.Achat;
-import src.commandes.Client;
-import src.commandes.Commande;
+import articles.Accessoire;
+import articles.Article;
+import articles.PieceDetachee;
+import articles.Velo;
+import commandes.Client;
+import commandes.Commande;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -49,40 +50,66 @@ public class Boutique {
 	}
     
 
-	/** iniate the terminal interface with the user
+	/** initiate the terminal interface with the user
 	 * 
 	 */
     public void initBoutique() {
     	while(true) {
 	    	int action = 0;
-			while(action < 1 || action > 6) {
-				System.out.print("Voici la liste des actions :\n"
-						+ "1. Consulter une commande\n"
-						+ "2. Créer une commande\n"
-						+ "3. Consulter un client\n"
-						+ "4. Créer un client\n"
-						+ "5. Consulter un article\n"
-						+ "6. Créer un article\n");
+			while(action < 1 || action > 12) {
+				System.out.print("\n\nVoici la liste des actions :\n\n"
+						+ "[1] Consulter une commande\n"
+						+ "[2] Consulter toutes les commandes\n"
+						+ "[3] Créer une commande\n"
+						+ "[4] Exporter les commandes\n"
+						+ "[5] Consulter un client\n"
+						+ "[6] Consulter tous les clients\n"
+						+ "[7] Créer un client\n"
+						+ "[8] Exporter les clients"
+						+ "[9] Consulter un article\n"
+						+ "[10] Consulter tous les articles\n"
+						+ "[11] Créer un article\n"
+						+ "[12] Exporter les articles\n");
 				action = Integer.parseInt(input.nextLine());
 			}
 			switch(action) {
 				case 1:
-					
+					seeCommande();
 					break;
-				case 2:
-					createCommande();
+				case 2: 
+					seeCommandes();
 					break;
 				case 3:
-					
+					createCommande();
 					break;
 				case 4:
-					createClient();
+					exportCommandesCSV();
 					break;
 				case 5:
+					seeClient();
 					break;
 				case 6:
+					seeClients();
+					break;
+				case 7:
+					createClient();
+					break;
+				case 8:
+					exportClientsCSV();
+					break;
+				case 9:
+					seeArticle();
+					break;
+				case 10:
+					seeArticles();
+					break;
+				case 11:
 					createArticle();
 					break;
+				case 12:
+					exportArticlesCSV();
+					break;
+
 			}
     	}
     }
@@ -104,11 +131,44 @@ public class Boutique {
 			adresse = input.nextLine();
 		}
 		Client client = new Client(nom, prenom, adresse);
-		System.out.print("Le client " + client.getPrenom() + " " + client.getNom() + " a bien été ajouté à la base de données\n");
+		System.out.print("Le client " + client.toString() + " a bien été ajouté à la base de données\n");
 		clients.add(client);
     }
+	public void seeClient() {
+    	int idClient = -1;
+		while(idClient < 0) {
+			System.out.print("Id du client : ");
+			try {
+				idClient = Integer.parseInt(input.nextLine());
+			} catch (NumberFormatException e) {
+				idClient = -1;
+			}
+		}
+		System.out.print("Id du client : " + findClientByID(idClient).toString());
+	}
+	public void seeClients() { 
+		if (articles.isEmpty()) {
+			System.out.print("Il n'existe pas de clients\n");
+		} else {	
+			System.out.println("Clients : \n");
+			for(Client client : clients) {
+				System.out.print(client.toString() + "\n\n");
+			}
+		}
+	}
+	public void exportClientsCSV() {
+		String csv = "";
+		for(Client client : clients) {
+			csv += client.toCSV();
+		}
+    	String filename = null;
+		while(filename == null) {
+			System.out.println("Comment souhaitez vous appeler le fichier d'export ?");
+			filename = input.nextLine();
+		}
+		ProcessFiles.writeFile(csv, filename);
+	}
 	
-
 	/** create an article from user's input and adds in the 'database'
 	 * 
 	 */
@@ -165,16 +225,54 @@ public class Boutique {
     			article = new PieceDetachee(prix, stock, nom, marque, articlesCompatibles);
 				break;
 		}
-		articles.add(article);
+				System.out.print("L'article a bien été ajouté à la base de données :/n " + article.toString());		
+				articles.add(article);
     }
 
+	public void seeArticle() {
+    	int idArticle = -1;
+		while(idArticle < 0) {
+			System.out.print("Id de l'article : ");
+			try {
+				idArticle = Integer.parseInt(input.nextLine());
+			} catch (NumberFormatException e) {
+				idArticle = -1;
+			}
+		}
+		System.out.print("Id de l'article : " + findArticleByID(idArticle).toString());
+	}
+	
+	public void seeArticles() { 
+		if (articles.isEmpty()) {
+			System.out.print("Il n'existe pas d'articles");
+		} else {	
+			System.out.println("Articles : \n");
+			for(Article article : articles) {
+				System.out.print(article.toString() + "\n\n");
+			}
+		}
+	}
+
+	public void exportArticlesCSV() {
+		String csv = "";
+		for(Article article : articles) {
+			csv += article.toCSV();
+		}
+    	String filename = null;
+		while(filename == null) {
+			System.out.println("Comment souhaitez vous appeler le fichier d'export ?");
+			filename = input.nextLine();
+		}
+		ProcessFiles.writeFile(csv, filename);
+	}
+	
 
 	/** create a commande from user's input and adds in the 'database'
 	 * 
 	 */
 	public void createCommande(){
 		int idClient = -1;
-		ArrayList<Achat> achats = new ArrayList<Achat>(); 
+		HashMap<Article, Integer> achats = new HashMap<Article, Integer>(); 
 		while(idClient < 0) {
 			System.out.print("Insérer le numéro de client associé à la commande");
 			idClient = Integer.parseInt(input.nextLine());
@@ -184,21 +282,62 @@ public class Boutique {
 		while(etatInsertion == 1) {
 			System.out.print("Insérer l'id du produit");
 			int idProduit = Integer.parseInt(input.nextLine());
+			System.out.print("Insérer la quantité du produit");
 			int quantite = Integer.parseInt(input.nextLine());
-			achats.add(new Achat(quantite, findArticleByID(idProduit)));
+			try {
+				achats.put(findArticleByID(idProduit), quantite);
+			} catch (Exception e) {
+				System.out.print("Le produit est déjà présent dans la commande");
+			}
 			System.out.print("Écrivez 1 pour ajouter un autre produit, et 2 pour passer à l'étape suivante");
 			etatInsertion = Integer.parseInt(input.nextLine());
 
 		}
-		commandes.add(new Commande(client, achats));
+		Commande commande = new Commande(client, achats);
+		System.out.print("La commande " + commande.toString() + " a bien été ajouté à la base de données\n");
+		commandes.add(commande);
     }
 
+	public void seeCommande() {
+    	int idCommande = -1;
+		while(idCommande < 0) {
+			System.out.print("Id de la commande : ");
+			try {
+				idCommande = Integer.parseInt(input.nextLine());
+			} catch (NumberFormatException e) {
+				idCommande = -1;
+			}
+		}
+		System.out.print("Id de la commande : " + findCommandeByID(idCommande).toString());
+	}
+	
+	public void seeCommandes() {
+		for(Commande commande : commandes) {
+			System.out.print(commande.toString() + "\n");
+		}
+	}
+	public void exportCommandesCSV() {
+		String csv = "";
+		for(Commande commande : commandes) {
+			csv += commande.toCSV();
+		}
+    	String filename = null;
+		while(filename == null) {
+			System.out.println("Comment souhaitez vous appeler le fichier d'export ?");
+			filename = input.nextLine();
+		}
+		ProcessFiles.writeFile(csv, filename);
+	}
+
+
+	
+	
 	/**
 	 * 
 	 * @param client
 	 */
     public void addClient(Client client){
-    	clients.add(client);
+    	this.clients.add(client);
     }
 	
 	
@@ -206,7 +345,7 @@ public class Boutique {
 	 * @param clients
 	 */
 	public void addClients(ArrayList<Client> clients) {
-		clients.addAll(clients);
+		this.clients.addAll(clients);
 	}
 
     
@@ -214,7 +353,7 @@ public class Boutique {
 	 * @param commande
 	 */
 	public void addCommande(Commande commande){
-    	commandes.add(commande);
+    	this.commandes.add(commande);
     }
 	
 	
@@ -222,7 +361,7 @@ public class Boutique {
 	 * @param commandes
 	 */
 	public void addCommandes(ArrayList<Commande> commandes) {
-		commandes.addAll(commandes);
+		this.commandes.addAll(commandes);
 	}
 
     
@@ -230,7 +369,7 @@ public class Boutique {
 	 * @param article
 	 */
 	public void addArticle(Article article){
-    	articles.add(article);
+    	this.articles.add(article);
     }
 	
 	
@@ -238,7 +377,7 @@ public class Boutique {
 	 * @param articles
 	 */
 	public void addArticles(ArrayList<Article> articles) {
-		articles.addAll(articles);
+		this.articles.addAll(articles);
 	}
 	        
     
@@ -268,5 +407,20 @@ public class Boutique {
     	}
 		return null;
     }
+    
+	
+	/** 
+	 * @param id
+	 * @return Commande
+	 */
+	public Commande findCommandeByID(int id){
+    	for(Commande commande : commandes) {
+    		if(commande.getId() == id) {
+    			return commande;
+    		}
+    	}
+		return null;
+    }
+
         
 }

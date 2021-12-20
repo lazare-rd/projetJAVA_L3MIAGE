@@ -1,4 +1,4 @@
-package src.articles;
+package articles;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -17,15 +17,17 @@ public abstract class Article {
         this.stock = stock;
         this.nom = nom;
         this.marque = marque; 
-        this.id = ++idCounter; 
+        this.id = idCounter++; 
     }
 
     
 	/** 
-	 * @param getIdCounter(
 	 * @return String
 	 */
-	public abstract String toString();
+	public String toString() {
+		return " Article n" + id + ":\n  Modèle : " + nom + "\n  Marque : " 
+				+ marque + "\n  Prix : " + prix + "\n  Quantité en stock : " + stock + "\n";
+	};
 
 	
 	/** 
@@ -122,6 +124,11 @@ public abstract class Article {
 	public void setMarque(String marque) {
 		this.marque = marque;
 	}
+
+
+	public String toCSV() {
+		return prix + ";" + stock + ";" + nom + ";" + marque;
+	}; 
 }
 
 
