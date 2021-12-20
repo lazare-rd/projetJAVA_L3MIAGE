@@ -1,6 +1,7 @@
 package commandes;
 
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,23 +23,25 @@ public class Client {
 	 * @param prenom
 	 * @param adresse
 	 */
-    public Client(String nom, String prenom, String adresse){
+    public Client(String nom, String prenom, String adresse, Date dateInscription){
         this.nom = nom ;
         this.prenom = prenom ;
         this.adresse = adresse ;
-        this.dateInscription = Calendar.getInstance().getTime();
-        this.id = ++idCounter;
+        this.dateInscription = dateInscription;
+        this.id = idCounter++;
     }
     
-
+    public Client(String nom, String prenom, String adresse) {
+    	this(nom, prenom, adresse, new Date());
+    }
 
     
 	/** 
 	 * @return String
 	 */
 	public String toString() {
-		return "Client " + id + "[nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateInscription="
-				+  getDateInscriptionString() + "]";
+		return "Client n" + id + "\n Nom : " + nom + "\n Prenom : " + prenom + "\n Adresse : " + adresse + "\n Date d'inscription : "
+				+  getDateInscription();
 	}
 
 	
@@ -77,8 +80,9 @@ public class Client {
 	/** 
 	 * @return String
 	 */
-	public String getDateInscriptionString() {
-        return dateInscription.toString(); 
+	public String getDateInscription() {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(dateInscription);
 	}
 
 	
@@ -88,4 +92,8 @@ public class Client {
 	public int getId() {
 		return id;
 	}	
+	
+	public String toCSV() {
+		return prenom + ";" + nom + ";" + adresse + "\n";
+	}
 }

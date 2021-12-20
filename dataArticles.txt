@@ -1,2 +1,2 @@
 accessoire;10;3;Gourde;Decathlon;haut-niveau
-velo;10;3;Gourde;Decathlon;detente
+velo;10;3;Yooo;Decathlon;detente
