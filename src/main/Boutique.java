@@ -65,7 +65,7 @@ public class Boutique {
 						+ "[5] Consulter un client\n"
 						+ "[6] Consulter tous les clients\n"
 						+ "[7] Créer un client\n"
-						+ "[8] Exporter les clients"
+						+ "[8] Exporter les clients\n"
 						+ "[9] Consulter un article\n"
 						+ "[10] Consulter tous les articles\n"
 						+ "[11] Créer un article\n"
