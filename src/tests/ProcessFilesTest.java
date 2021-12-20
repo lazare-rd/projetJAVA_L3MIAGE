@@ -34,21 +34,6 @@ public class ProcessFilesTest {
         }
     }
 
-    /*
-    @Test
-    public void databaseObjectToVelo_takeFilePath_returnArrrayOfVelo(){
-        ArrayList<Velo> expectedVelos = new ArrayList<Velo>();
-        ArrayList<Velo> receivedVelos = ProcessFiles.databaseObjectToVelo(absPath + "/src/tests/DataVeloTest.txt");
-        Velo expectedVelo1 = new Velo(10, 3, "Gourde", "Decathlon", "loisir");
-        Velo expectedVelo2 = new Velo(20, 5, "Pochette", "Go-Sport", "performance");
-        expectedVelos.add(expectedVelo1);
-        expectedVelos.add(expectedVelo2);
-     
-        for ( int i=0 ; i<receivedVelos.size() ; i++ ){
-            assertEquals(expectedVelos.get(i).toString().substring(1), receivedVelos.get(i).toString().substring(1));
-        }
-    }
-    */
     @Test
     public void databaseObjectToCLient_takeFilePath_returnArrayOfClient(){
         ArrayList<Client> expectedClients = new ArrayList<Client>();
