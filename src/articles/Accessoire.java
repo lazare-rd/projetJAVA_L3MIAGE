@@ -1,4 +1,4 @@
-package src.articles;
+package articles;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas

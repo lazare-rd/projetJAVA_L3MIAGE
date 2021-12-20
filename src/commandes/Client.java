@@ -1,4 +1,4 @@
-package src.commandes;
+package commandes;
 
 import java.util.Calendar;
 import java.util.Date;

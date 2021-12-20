@@ -1,15 +1,15 @@
-package src ; 
+package main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.articles.Accessoire;
-import src.articles.Article;
-import src.articles.PieceDetachee;
-import src.articles.Velo;
-import src.commandes.Achat;
-import src.commandes.Client;
-import src.commandes.Commande;
+import articles.Accessoire;
+import articles.Article;
+import articles.PieceDetachee;
+import articles.Velo;
+import commandes.Achat;
+import commandes.Client;
+import commandes.Commande;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas

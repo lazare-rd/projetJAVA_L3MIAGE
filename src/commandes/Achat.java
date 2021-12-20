@@ -1,6 +1,6 @@
-package src.commandes;
+package commandes;
 
-import src.articles.Article;
+import articles.Article;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas

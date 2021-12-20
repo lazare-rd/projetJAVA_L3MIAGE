@@ -1,4 +1,4 @@
-package src.articles;
+package articles;
 
 import java.util.ArrayList;
 

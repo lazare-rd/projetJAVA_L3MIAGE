@@ -1,11 +1,11 @@
-package src.tests;
+package tests;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import src.ProcessFiles ;
+import main.ProcessFiles ;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.params.*;
