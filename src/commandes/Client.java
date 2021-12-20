@@ -37,8 +37,8 @@ public class Client {
 	 * @return String
 	 */
 	public String toString() {
-		return "Client " + id + "[nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", dateInscription="
-				+  getDateInscriptionString() + "]";
+		return id + " ; " + nom + " ; " + prenom + " ; " + adresse + " ; "
+				+  getDateInscriptionString() ;
 	}
 
 	

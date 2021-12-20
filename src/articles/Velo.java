@@ -18,7 +18,7 @@ public class Velo extends Article{
      */
     @Override
     public String toString(){
-        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
+        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque + " ; " + discipline; 
     }
 
 	
