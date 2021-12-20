@@ -34,6 +34,7 @@ public class ProcessFilesTest {
         }
     }
 
+    /*
     @Test
     public void databaseObjectToVelo_takeFilePath_returnArrrayOfVelo(){
         ArrayList<Velo> expectedVelos = new ArrayList<Velo>();
@@ -47,7 +48,7 @@ public class ProcessFilesTest {
             assertEquals(expectedVelos.get(i).toString().substring(1), receivedVelos.get(i).toString().substring(1));
         }
     }
-
+    */
     @Test
     public void databaseObjectToCLient_takeFilePath_returnArrayOfClient(){
         ArrayList<Client> expectedClients = new ArrayList<Client>();

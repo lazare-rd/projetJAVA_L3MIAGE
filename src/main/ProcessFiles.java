@@ -44,25 +44,6 @@ public class ProcessFiles {
         }
         return databaseObject; 
     }
-<<<<<<< HEAD:src/ProcessFiles.java
-
-    
-    /** 
-     * @param filePath
-     * @return ArrayList<Velo>
-     */
-    public static ArrayList<Velo> databaseObjectToVelo(String filePath){
-        ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
-        ArrayList<Velo> velos = new ArrayList<Velo>(); 
-        for (String[] data : databaseObject){
-            Velo velo = new Velo(Integer.parseInt(data[0]), Integer.parseInt(data[1]), data[2], data[3], data[4]);
-            velos.add(velo);
-        }
-        return velos ;
-    }
-
-=======
->>>>>>> 847137b126da292b1441f7d210bc8549e6376165:src/main/ProcessFiles.java
     
     /** 
      * @param filePath
