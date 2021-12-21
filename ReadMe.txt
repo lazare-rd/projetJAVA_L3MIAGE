@@ -39,6 +39,8 @@ Articles :
 [13] Créer un article
 [14] Exporter les articles
 [15] Supprimer un article
+
+[-1 for quit]
 _______________________________________________
 
 Un export crée un fichier csv avec les informations relatives au client/commande/article exporté
