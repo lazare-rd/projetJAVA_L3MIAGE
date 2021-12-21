@@ -56,7 +56,7 @@ public class Boutique {
     public void initBoutique() {
 		boolean stay = true ;
     	while(stay) {
-			System.out.print("\n\nVoici la liste des actions : [-1 for quit]\n\n"
+			System.out.print("\n\nVoici la liste des actions : \n\n"
 					+ "Commandes : \n\n"
 					+ "[1] Consulter une commande\n"
 					+ "[2] Consulter toutes les commandes\n"
@@ -74,7 +74,8 @@ public class Boutique {
 					+ "[12] Consulter tous les articles\n"
 					+ "[13] Créer un article\n"
 					+ "[14] Exporter les articles\n"						
-					+ "[15] Supprimer un article\n");
+					+ "[15] Supprimer un article\n\n"
+					+ "[-1 for quit]\n");
 			int action = 0;
 			try{
 				action = Integer.parseInt(input.nextLine());
