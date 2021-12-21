@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -133,8 +134,11 @@ public class ProcessFiles {
     static void writeFile(String csv, String filename) {
     	
         try {
-        		String path = System.getProperty("user.home") + "/" + filename + ".txt";
-			File myFile = new File(path); 	
+            Path currentRelativePath = Path.of("");
+            String workingDirectory = currentRelativePath.toAbsolutePath().toString();
+            String path = workingDirectory + "/" + filename + ".csv";	
+            System.out.println(path);		
+            File myFile = new File(path); 	
 			myFile.createNewFile();
 			FileWriter fw = new FileWriter(path);
 			fw.write(csv);
