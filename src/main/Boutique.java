@@ -58,18 +58,24 @@ public class Boutique {
 	    	int action = 0;
 			while(action < 1 || action > 12) {
 				System.out.print("\n\nVoici la liste des actions :\n\n"
+						+ "Commandes : \n\n"
 						+ "[1] Consulter une commande\n"
 						+ "[2] Consulter toutes les commandes\n"
 						+ "[3] Créer une commande\n"
 						+ "[4] Exporter les commandes\n"
-						+ "[5] Consulter un client\n"
-						+ "[6] Consulter tous les clients\n"
-						+ "[7] Créer un client\n"
-						+ "[8] Exporter les clients"
-						+ "[9] Consulter un article\n"
-						+ "[10] Consulter tous les articles\n"
-						+ "[11] Créer un article\n"
-						+ "[12] Exporter les articles\n");
+						+ "[5] Supprimer une commande\n"
+						+ "\n\nClients : \n\n"
+						+ "[6] Consulter un client\n"
+						+ "[7] Consulter tous les clients\n"
+						+ "[8] Créer un client\n"
+						+ "[9] Exporter les clients\n"
+						+ "[10] Supprimer un client\n" 
+						+ "\n\nArticles : \n\n"
+						+ "[11] Consulter un article\n"
+						+ "[12] Consulter tous les articles\n"
+						+ "[13] Créer un article\n"
+						+ "[14] Exporter les articles\n"
+						+ "[15] Supprimer un article\n");
 				action = Integer.parseInt(input.nextLine());
 			}
 			switch(action) {
@@ -86,28 +92,37 @@ public class Boutique {
 					exportCommandesCSV();
 					break;
 				case 5:
-					seeClient();
+					eraseCommande();
 					break;
 				case 6:
-					seeClients();
+					seeClient();
 					break;
 				case 7:
-					createClient();
+					seeClients();
 					break;
 				case 8:
-					exportClientsCSV();
+					createClient();
 					break;
 				case 9:
-					seeArticle();
+					exportClientsCSV();
 					break;
 				case 10:
-					seeArticles();
+					eraseClient();
 					break;
 				case 11:
-					createArticle();
+					seeArticle();
 					break;
 				case 12:
+					seeArticles();
+					break;
+				case 13:
+					createArticle();
+					break;
+				case 14:
 					exportArticlesCSV();
+					break;
+				case 15:
+					eraseArticle();
 					break;
 
 			}
@@ -135,6 +150,19 @@ public class Boutique {
 		clients.add(client);
     }
 
+	public void eraseClient(){
+		System.out.println("Id du client à supprimer : ");
+		int idToErase = Integer.parseInt(input.nextLine());
+		System.out.println("Êtes vous sûr ? [Y/N]");
+		String answer = input.nextLine();
+		switch(answer){
+			case "Y":
+				clients.remove(findClientByID(idToErase));
+				break;
+			case "N":
+				break;
+		}
+	}
 
 	
 	public void seeClient() {
@@ -254,8 +282,19 @@ public class Boutique {
 		System.out.print("Id de l'article : " + findArticleByID(idArticle).toString());
 	}
 	
-
-
+	public void eraseArticle(){
+		System.out.println("Id de l'article à supprimer : ");
+		int idToErase = Integer.parseInt(input.nextLine());
+		System.out.println("Êtes vous sûr ? [Y/N]");
+		String answer = input.nextLine();
+		switch(answer){
+			case "Y":
+				articles.remove(findArticleByID(idToErase));
+				break;
+			case "N":
+				break;
+		}
+	}
 
 	public void seeArticles() { 
 		if (articles.isEmpty()) {
@@ -332,7 +371,19 @@ public class Boutique {
 		System.out.print("Id de la commande : " + findCommandeByID(idCommande).toString());
 	}
 	
-
+	public void eraseCommande(){
+		System.out.println("Id de la commande à suppimer : ");
+		int idToErase = Integer.parseInt(input.nextLine());
+		System.out.println("Êtes vous sûr ? [Y/N]");
+		String answer = input.nextLine();
+		switch(answer){
+			case "Y":
+				commandes.remove(findCommandeByID(idToErase));
+				break;
+			case "N":
+				break;
+		}
+	}
 
 	public void seeCommandes() {
 		for(Commande commande : commandes) {
