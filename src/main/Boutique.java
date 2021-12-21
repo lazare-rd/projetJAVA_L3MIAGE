@@ -134,6 +134,9 @@ public class Boutique {
 		System.out.print("Le client " + client.toString() + " a bien été ajouté à la base de données\n");
 		clients.add(client);
     }
+
+
+	
 	public void seeClient() {
     	int idClient = -1;
 		while(idClient < 0) {
@@ -146,6 +149,9 @@ public class Boutique {
 		}
 		System.out.print("Id du client : " + findClientByID(idClient).toString());
 	}
+
+
+
 	public void seeClients() { 
 		if (articles.isEmpty()) {
 			System.out.print("Il n'existe pas de clients\n");
@@ -156,6 +162,9 @@ public class Boutique {
 			}
 		}
 	}
+
+
+
 	public void exportClientsCSV() {
 		String csv = "";
 		for(Client client : clients) {
@@ -229,6 +238,9 @@ public class Boutique {
 				articles.add(article);
     }
 
+
+
+
 	public void seeArticle() {
     	int idArticle = -1;
 		while(idArticle < 0) {
@@ -242,6 +254,9 @@ public class Boutique {
 		System.out.print("Id de l'article : " + findArticleByID(idArticle).toString());
 	}
 	
+
+
+
 	public void seeArticles() { 
 		if (articles.isEmpty()) {
 			System.out.print("Il n'existe pas d'articles");
@@ -252,6 +267,9 @@ public class Boutique {
 			}
 		}
 	}
+
+
+
 
 	public void exportArticlesCSV() {
 		String csv = "";
@@ -298,6 +316,9 @@ public class Boutique {
 		commandes.add(commande);
     }
 
+
+
+
 	public void seeCommande() {
     	int idCommande = -1;
 		while(idCommande < 0) {
@@ -311,11 +332,15 @@ public class Boutique {
 		System.out.print("Id de la commande : " + findCommandeByID(idCommande).toString());
 	}
 	
+
+
 	public void seeCommandes() {
 		for(Commande commande : commandes) {
 			System.out.print(commande.toString() + "\n");
 		}
 	}
+
+
 	public void exportCommandesCSV() {
 		String csv = "";
 		for(Commande commande : commandes) {

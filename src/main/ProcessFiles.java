@@ -124,6 +124,12 @@ public class ProcessFiles {
         return commandes ;
     }
     
+
+    /**
+     * 
+     * @param csv
+     * @param filename
+     */
     static void writeFile(String csv, String filename) {
     	
         try {

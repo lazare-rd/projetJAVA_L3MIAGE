@@ -11,11 +11,15 @@ import main.ProcessFiles ;
 import org.junit.Test; 
 import static org.junit.Assert.*;
 
-
+/**
+ * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
+ * @version 0.1
+ */
 public class ProcessFilesTest {
     
     Path currentRelativePath = Path.of("");
     String absPath = currentRelativePath.toAbsolutePath().toString();
+
 
     @Test
     public void readDatabaseFile_takeFilePath_returnFileContent(){

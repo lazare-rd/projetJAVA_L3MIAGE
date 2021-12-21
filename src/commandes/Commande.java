@@ -100,6 +100,11 @@ public class Commande {
 		return formatter.format(date);
 	}
 
+
+	/**
+	 * 
+	 * @return String
+	 */
 	public String achatsToCSV() {
 		String achatsCSV ="";
 		int index = 0;
@@ -112,6 +117,11 @@ public class Commande {
 		return achatsCSV;
 	}
 	
+
+	/**
+	 * 
+	 * @return String
+	 */
 	public String toCSV() {
 		return client.getId() + ";" + achatsToCSV() + ";" + getDate() + "\n";
 	}

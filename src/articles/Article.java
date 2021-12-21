@@ -125,7 +125,10 @@ public abstract class Article {
 		this.marque = marque;
 	}
 
-
+	/**
+	 * 
+	 * @return String
+	 */
 	public String toCSV() {
 		return prix + ";" + stock + ";" + nom + ";" + marque;
 	}; 
