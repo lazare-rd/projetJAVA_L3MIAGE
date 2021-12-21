@@ -17,7 +17,7 @@ public class Velo extends Article{
      * @return String
      */
     public String toString(){
-        return super.toString() + "  Discipline : " + discipline; 
+        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque + " ; " + discipline; 
     }
 
 	

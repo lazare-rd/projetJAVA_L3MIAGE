@@ -40,8 +40,8 @@ public class Client {
 	 * @return String
 	 */
 	public String toString() {
-		return "Client n" + id + "\n Nom : " + nom + "\n Prenom : " + prenom + "\n Adresse : " + adresse + "\n Date d'inscription : "
-				+  getDateInscription();
+		return id + " ; " + nom + " ; " + prenom + " ; " + adresse + " ; "
+				+  getDateInscription() ;
 	}
 
 	

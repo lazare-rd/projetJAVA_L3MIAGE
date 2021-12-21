@@ -49,7 +49,7 @@ public class ProcessFiles {
      * @param filePath
      * @return ArrayList<Client>
      */
-    static ArrayList<Client> databaseObjectToClient(String filePath){
+    public static ArrayList<Client> databaseObjectToClient(String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Client> clients = new ArrayList<Client>(); 
         for (String[] data : databaseObject){
@@ -65,7 +65,7 @@ public class ProcessFiles {
      * @param filePath
      * @return ArrayList<Article>
      */
-    static ArrayList<Article> databaseObjectToArticles(Boutique boutique, String filePath){
+    public static ArrayList<Article> databaseObjectToArticles(Boutique boutique, String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Article> articles = new ArrayList<Article>(); 
         
@@ -96,7 +96,7 @@ public class ProcessFiles {
      * @param filePath
      * @return ArrayList<Commande>
      */
-    static ArrayList<Commande> databaseObjectToCommandes(Boutique boutique, String filePath){
+    public static ArrayList<Commande> databaseObjectToCommandes(Boutique boutique, String filePath){
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Commande> commandes = new ArrayList<Commande>(); 
         for (String[] data : databaseObject){
