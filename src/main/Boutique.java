@@ -11,6 +11,7 @@ import articles.PieceDetachee;
 import articles.Velo;
 import commandes.Client;
 import commandes.Commande;
+import exceptions.writeFileException;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -166,7 +167,11 @@ public class Boutique {
 			System.out.println("Comment souhaitez vous appeler le fichier d'export ?");
 			filename = input.nextLine();
 		}
-		ProcessFiles.writeFile(csv, filename);
+		try {
+			ProcessFiles.writeFile(csv, filename);
+		} catch (writeFileException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/** create an article from user's input and adds in the 'database'
@@ -263,7 +268,11 @@ public class Boutique {
 			System.out.println("Comment souhaitez vous appeler le fichier d'export ?");
 			filename = input.nextLine();
 		}
-		ProcessFiles.writeFile(csv, filename);
+		try {
+			ProcessFiles.writeFile(csv, filename);
+		} catch (writeFileException e) {
+			e.printStackTrace();
+		}
 	}
 	
 
@@ -295,7 +304,11 @@ public class Boutique {
 		}
 		Commande commande = new Commande(client, achats);
 		System.out.print("La commande " + commande.toString() + " a bien été ajouté à la base de données\n");
-		commandes.add(commande);
+		if(commande.isStockAvailable()) {
+			commandes.add(commande);
+		} else {
+			System.out.print("Stock insuffisant pour enregistrer la commande");
+		}
     }
 
 	public void seeCommande() {
@@ -308,7 +321,7 @@ public class Boutique {
 				idCommande = -1;
 			}
 		}
-		System.out.print("Id de la commande : " + findCommandeByID(idCommande).toString());
+		System.out.print("Commande : " + findCommandeByID(idCommande).toString());
 	}
 	
 	public void seeCommandes() {
@@ -326,7 +339,11 @@ public class Boutique {
 			System.out.println("Comment souhaitez vous appeler le fichier d'export ?");
 			filename = input.nextLine();
 		}
-		ProcessFiles.writeFile(csv, filename);
+		try {
+			ProcessFiles.writeFile(csv, filename);
+		} catch (writeFileException e) {
+			System.out.println("Erreur lors de l'export, veuillez réessayer.");
+		}
 	}
 
 

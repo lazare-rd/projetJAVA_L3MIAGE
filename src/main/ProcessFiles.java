@@ -17,6 +17,8 @@ import articles.PieceDetachee;
 import articles.Velo;
 import commandes.Client;
 import commandes.Commande;
+import exceptions.readFileException;
+import exceptions.writeFileException;
 
 /**
  * @author Nicolas Copsidas, Leanne Robert, Lazare Ricour-Dumas
@@ -29,7 +31,7 @@ public class ProcessFiles {
      * @param filePath
      * @return ArrayList<String[]>
      */
-    public static ArrayList<String[]> readDatabaseFile(String filePath){
+    public static ArrayList<String[]> readDatabaseFile(String filePath) throws readFileException{
         ArrayList<String[]> databaseObject = new ArrayList<String[]>();
         try{
             Scanner s = new Scanner(new File(filePath)) ;
@@ -48,8 +50,9 @@ public class ProcessFiles {
     /** 
      * @param filePath
      * @return ArrayList<Client>
+     * @throws readFileException 
      */
-    public static ArrayList<Client> databaseObjectToClient(String filePath){
+    public static ArrayList<Client> databaseObjectToClient(String filePath) throws readFileException{
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Client> clients = new ArrayList<Client>(); 
         for (String[] data : databaseObject){
@@ -64,8 +67,9 @@ public class ProcessFiles {
      * @param boutique
      * @param filePath
      * @return ArrayList<Article>
+     * @throws readFileException 
      */
-    public static ArrayList<Article> databaseObjectToArticles(Boutique boutique, String filePath){
+    public static ArrayList<Article> databaseObjectToArticles(Boutique boutique, String filePath) throws readFileException{
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Article> articles = new ArrayList<Article>(); 
         
@@ -95,8 +99,9 @@ public class ProcessFiles {
      * @param boutique
      * @param filePath
      * @return ArrayList<Commande>
+     * @throws readFileException 
      */
-    public static ArrayList<Commande> databaseObjectToCommandes(Boutique boutique, String filePath){
+    public static ArrayList<Commande> databaseObjectToCommandes(Boutique boutique, String filePath) throws readFileException{
         ArrayList<String[]> databaseObject = readDatabaseFile(filePath);
         ArrayList<Commande> commandes = new ArrayList<Commande>(); 
         for (String[] data : databaseObject){
@@ -118,13 +123,18 @@ public class ProcessFiles {
 	            commande = new Commande(client, achats, date);
 			} catch (ParseException e) {
 	            commande = new Commande(client, achats);
-			}        	
-            commandes.add(commande);
+			}     
+			if (commande.isStockAvailable()) {				
+				commandes.add(commande);
+				System.out.print("La commande a bien été ajoutée");
+			} else {
+				System.out.print("Stock insuffisant pour enregistrer la commande");
+			}
         }
         return commandes ;
     }
     
-    static void writeFile(String csv, String filename) {
+    static void writeFile(String csv, String filename) throws writeFileException{
     	
         try {
         		String path = System.getProperty("user.home") + "/" + filename + ".txt";
@@ -135,8 +145,7 @@ public class ProcessFiles {
 			fw.close();
 			System.out.print("L'export a bien été réalisé au chemin suivant : " + path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new writeFileException("Erreur lors de l'écriture du fichier");
 		}
 
     }

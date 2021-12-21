@@ -26,7 +26,7 @@ public abstract class Article {
 	 */
 	public String toString() {
 		return " Article n" + id + ":\n  Modèle : " + nom + "\n  Marque : " 
-				+ marque + "\n  Prix : " + prix + "\n  Quantité en stock : " + stock + "\n";
+				+ marque + "\n  Prix : " + prix + "€\n  Quantité en stock : " + stock + "\n";
 	};
 
 	
@@ -129,6 +129,14 @@ public abstract class Article {
 	public String toCSV() {
 		return prix + ";" + stock + ";" + nom + ";" + marque;
 	}; 
+	
+	public void updateStock(int soldStock) {
+		stock -= soldStock;
+	}
+	
+	public Boolean isStockAvailable(int askedStock) {
+		return stock > askedStock;
+	}
 }
 
 

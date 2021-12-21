@@ -46,7 +46,7 @@ public class Commande {
 	 * @return String
 	 */
 	public String toString() {
-		return "Commande n"+ id + "\n Client n" + client.getId() + " : "+ client.getPrenom() + " " + client.getNom() + "\n Achats : \n" + getAchatsString() + "Date : " + getDate();
+		return "Commande n"+ id + "\n Client n" + client.getId() + " : "+ client.getPrenom() + " " + client.getNom() + "\n Achats : \n" + getAchatsString() + " Date : " + getDate();
 	}
 
 	
@@ -81,17 +81,36 @@ public class Commande {
 		return achats;
 	}
 	
+	public void updateStock() {
+		for (HashMap.Entry<Article, Integer> achat : achats.entrySet()) {
+			achat.getKey().updateStock(achat.getValue());
+		}
+	}
+	
+	public Boolean isStockAvailable() {
+		for (HashMap.Entry<Article, Integer> achat : achats.entrySet()) {
+			if(!achat.getKey().isStockAvailable(achat.getValue())) {
+				return false;
+			};
+		}
+		return true;
+	}
+	
 	/** 
 	 * @return ArrayList<Achat>
 	 */
 	public String getAchatsString() {
 		String achatsString ="";
+		float prixTotal = 0;
+
 		for (HashMap.Entry<Article, Integer> achat : achats.entrySet()) {
-			achatsString += achat.getKey().toString() + " - Quantité : " + achat.getValue() + "\n";
+			prixTotal += achat.getKey().getPrix() * achat.getValue();
+			achatsString += achat.getKey().toString() + "\n  Quantité : " + achat.getValue() + "\n  Prix total : " + achat.getKey().getPrix() * achat.getValue() + "€ \n";
 		}
+		achatsString += " Prix de la commande : " + prixTotal + "€ \n";
 		return achatsString;
 	}
-	
+		
 	/** 
 	 * @return Date
 	 */
