@@ -54,30 +54,34 @@ public class Boutique {
 	 * 
 	 */
     public void initBoutique() {
-    	while(true) {
-	    	int action = 0;
-			while(action < 1 || action > 12) {
-				System.out.print("\n\nVoici la liste des actions :\n\n"
-						+ "Commandes : \n\n"
-						+ "[1] Consulter une commande\n"
-						+ "[2] Consulter toutes les commandes\n"
-						+ "[3] Créer une commande\n"
-						+ "[4] Exporter les commandes\n"
-						+ "[5] Supprimer une commande\n"
-						+ "\n\nClients : \n\n"
-						+ "[6] Consulter un client\n"
-						+ "[7] Consulter tous les clients\n"
-						+ "[8] Créer un client\n"
-						+ "[9] Exporter les clients\n"
-						+ "[10] Supprimer un client\n" 
-						+ "\n\nArticles : \n\n"
-						+ "[11] Consulter un article\n"
-						+ "[12] Consulter tous les articles\n"
-						+ "[13] Créer un article\n"
-						+ "[14] Exporter les articles\n"
-						+ "[15] Supprimer un article\n");
+		boolean stay = true ;
+    	while(stay) {
+			System.out.print("\n\nVoici la liste des actions : [-1 for quit]\n\n"
+					+ "Commandes : \n\n"
+					+ "[1] Consulter une commande\n"
+					+ "[2] Consulter toutes les commandes\n"
+					+ "[3] Créer une commande\n"
+					+ "[4] Exporter les commandes\n"
+					+ "[5] Supprimer une commande\n"
+					+ "\n\nClients : \n\n"
+					+ "[6] Consulter un client\n"
+					+ "[7] Consulter tous les clients\n"
+					+ "[8] Créer un client\n"						
+					+ "[9] Exporter les clients\n"
+					+ "[10] Supprimer un client\n" 
+					+ "\n\nArticles : \n\n"
+					+ "[11] Consulter un article\n"
+					+ "[12] Consulter tous les articles\n"
+					+ "[13] Créer un article\n"
+					+ "[14] Exporter les articles\n"						
+					+ "[15] Supprimer un article\n");
+			int action = 0;
+			try{
 				action = Integer.parseInt(input.nextLine());
+			}catch(NumberFormatException e){
+				System.out.println("Vous ne pouvez intéragir avec le menu qu'avec des chiffres compris entre 1 et 15");				
 			}
+			
 			switch(action) {
 				case 1:
 					seeCommande();
@@ -124,10 +128,13 @@ public class Boutique {
 				case 15:
 					eraseArticle();
 					break;
-
+				case -1:
+					stay = false;
+					break;
 			}
     	}
     }
+
     
 
 	/** create a client from user's input and adds in the 'database'
