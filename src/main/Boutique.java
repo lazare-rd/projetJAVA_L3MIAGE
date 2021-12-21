@@ -1,6 +1,5 @@
 package main;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -349,23 +348,30 @@ public class Boutique {
 		HashMap<Article, Integer> achats = new HashMap<Article, Integer>(); 
 		while(idClient < 0) {
 			System.out.print("Insérer le numéro de client associé à la commande");
-			idClient = Integer.parseInt(input.nextLine());
+			try{
+				idClient = Integer.parseInt(input.nextLine());
+			}catch(NumberFormatException e){
+				idClient = -1;
+			}
 		}
 		Client client = findClientByID(idClient);
 		int etatInsertion = 1;
-		while(etatInsertion == 1) {
-			System.out.print("Insérer l'id du produit");
-			int idProduit = Integer.parseInt(input.nextLine());
-			System.out.print("Insérer la quantité du produit");
-			int quantite = Integer.parseInt(input.nextLine());
-			try {
+		int idProduit = -1;
+		int quantite = -1;
+		while(etatInsertion == 1 || ( idProduit == -1 && quantite == -1 )) {
+			try{
+				System.out.print("Insérer l'id du produit");
+				idProduit = Integer.parseInt(input.nextLine());
+				System.out.print("Insérer la quantité du produit");
+				quantite = Integer.parseInt(input.nextLine());
 				achats.put(findArticleByID(idProduit), quantite);
-			} catch (Exception e) {
+				System.out.print("Écrivez 1 pour ajouter un autre produit, et 2 pour passer à l'étape suivante");
+				etatInsertion = Integer.parseInt(input.nextLine());
+			}catch(NumberFormatException e){
+				etatInsertion = 1;
+			}catch (Exception e) {
 				System.out.print("Le produit est déjà présent dans la commande");
 			}
-			System.out.print("Écrivez 1 pour ajouter un autre produit, et 2 pour passer à l'étape suivante");
-			etatInsertion = Integer.parseInt(input.nextLine());
-
 		}
 		Commande commande = new Commande(client, achats);
 		System.out.print("La commande " + commande.toString() + " a bien été ajouté à la base de données\n");

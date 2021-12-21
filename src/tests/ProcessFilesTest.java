@@ -7,6 +7,7 @@ import commandes.Client;
 import main.Boutique;
 import articles.*;
 import main.ProcessFiles ;
+import exceptions.*;
 
 import org.junit.Test; 
 import static org.junit.Assert.*;
@@ -22,7 +23,7 @@ public class ProcessFilesTest {
 
 
     @Test
-    public void readDatabaseFile_takeFilePath_returnFileContent(){
+    public void readDatabaseFile_takeFilePath_returnFileContent() throws readFileException{
         String arg = "Jean;Dormeson;33 rue des Batignoles/Leanne;Robert;18 rue Truc/Nicolas;Copsidas;23 avenue machin" ;
         ArrayList<String[]> expectedArray = new ArrayList<String[]>();
         ArrayList<String[]> receivedArray = ProcessFiles.readDatabaseFile(absPath + "/src/tests/DatabaseTest.txt");
@@ -39,7 +40,7 @@ public class ProcessFilesTest {
     }
 
     @Test
-    public void databaseObjectToCLient_takeFilePath_returnArrayOfClient(){
+    public void databaseObjectToCLient_takeFilePath_returnArrayOfClient() throws readFileException{
         ArrayList<Client> expectedClients = new ArrayList<Client>();
         ArrayList<Client> receivedClients = ProcessFiles.databaseObjectToClient(absPath + "/src/tests/DatabaseTest.txt");
         Client expectedClient1 = new Client("Jean", "Dormeson", "33 rue des Batignoles");
@@ -56,7 +57,7 @@ public class ProcessFilesTest {
     }
 
     @Test
-    public void databaseObjectToArticles_takeBoutiqueAndFilePath_returnArrayOfArticles(){
+    public void databaseObjectToArticles_takeBoutiqueAndFilePath_returnArrayOfArticles() throws readFileException{
         Boutique boutique = new Boutique();
         ArrayList<Article> expectedArticles = new ArrayList<Article>();
         ArrayList<Article> receivedArticles = ProcessFiles.databaseObjectToArticles(boutique, absPath + "/src/tests/DataArticlesTest.txt");
