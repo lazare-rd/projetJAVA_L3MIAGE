@@ -30,6 +30,10 @@ public class PieceDetachee extends Article{
 		return articlesCompatibles;
 	}
     
+	/**
+	 * 
+	 * @return String
+	 */
     public String getArticlesCompatiblesString() {
     	String articlesCompatiblesString = "";
     	for (Article articleCompatible : articlesCompatibles) {
@@ -45,10 +49,20 @@ public class PieceDetachee extends Article{
 		this.articlesCompatibles = articlesCompatibles;
 	}
     
+
+	/**
+	 * 
+	 * @return String
+	 */
 	public String toCSV() {
 		return "velo;" + super.toCSV() + ";" + articlesCompatiblesToCSV() + "\n";
 	}; 
 	
+
+	/**
+	 * 
+	 * @return String
+	 */
 	public String articlesCompatiblesToCSV() {
 		String articlesCompatiblesCSV = "";
 		for(int i = 0; i < articlesCompatibles.size(); i++) {

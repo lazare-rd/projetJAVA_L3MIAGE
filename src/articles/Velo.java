@@ -36,6 +36,10 @@ public class Velo extends Article{
 		this.discipline = discipline;
 	}    
     
+    /**
+	 * 
+	 * @return String
+	 */
 	public String toCSV() {
 		return "velo;" + super.toCSV() + ";" + discipline + "\n";
 	}; 

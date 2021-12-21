@@ -93,6 +93,11 @@ public class Client {
 		return id;
 	}	
 	
+
+	/**
+	 * 
+	 * @return String
+	 */
 	public String toCSV() {
 		return prenom + ";" + nom + ";" + adresse + "\n";
 	}
