@@ -159,10 +159,18 @@ public class Boutique {
     }
 
 	public void eraseClient(){
-		System.out.println("Id du client à supprimer : ");
-		int idToErase = Integer.parseInt(input.nextLine());
-		System.out.println("Êtes vous sûr ? [Y/N]");
-		String answer = input.nextLine();
+		int idToErase = -1 ; 
+		String answer = "";
+		while ( idToErase == -1 ){
+			try{
+				System.out.println("Id du client à supprimer : ");
+				idToErase = Integer.parseInt(input.nextLine());
+				System.out.println("Êtes vous sûr ? [Y/N]");
+				answer = input.nextLine();
+			}catch(NumberFormatException e){
+				idToErase = -1;
+			}
+		}
 		switch(answer){
 			case "Y":
 				clients.remove(findClientByID(idToErase));
@@ -225,8 +233,12 @@ public class Boutique {
 		Article article = null;
 		int typeArticle = 0;
 		while(typeArticle < 1 ||  typeArticle > 3) {
-			System.out.print("Écrivez le numéro associé au type de produit que vous souhaitez créer : un accessoire [1], un velo [2], une piece détachée [3]");
-			typeArticle = Integer.parseInt(input.nextLine());
+			try{
+				System.out.print("Écrivez le numéro associé au type de produit que vous souhaitez créer : un accessoire [1], un velo [2], une piece détachée [3]");
+				typeArticle = Integer.parseInt(input.nextLine());
+			}catch(NumberFormatException e){
+				typeArticle = 0 ;
+			}
 		}
 		float prix = 0;
 		int stock = 0; 
@@ -237,10 +249,15 @@ public class Boutique {
 			nom = input.nextLine();
 			System.out.print("Marque de l'article : ");
 			marque = input.nextLine();
-			System.out.print("Prix de l'article : ");
-			prix = Float.parseFloat(input.nextLine());
-			System.out.print("Stock : ");
-			stock = Integer.parseInt(input.nextLine());
+			try{
+				System.out.print("Prix de l'article : ");
+				prix = Float.parseFloat(input.nextLine());
+				System.out.print("Stock : ");
+				stock = Integer.parseInt(input.nextLine());
+			}catch(NumberFormatException e){
+				prix = 0 ;
+				stock = 0;
+			}
 		}
 		
 		switch(typeArticle) {
@@ -295,10 +312,18 @@ public class Boutique {
 	}
 	
 	public void eraseArticle(){
-		System.out.println("Id de l'article à supprimer : ");
-		int idToErase = Integer.parseInt(input.nextLine());
-		System.out.println("Êtes vous sûr ? [Y/N]");
-		String answer = input.nextLine();
+		int idToErase = -1 ;
+		String answer = "";
+		while ( idToErase == -1 ){
+			try{
+				System.out.println("Id de l'article à supprimer : ");
+				idToErase = Integer.parseInt(input.nextLine());
+				System.out.println("Êtes vous sûr ? [Y/N]");
+				answer = input.nextLine();
+			}catch(NumberFormatException e){
+				idToErase = -1 ; 
+			}
+		}
 		switch(answer){
 			case "Y":
 				articles.remove(findArticleByID(idToErase));
@@ -399,10 +424,18 @@ public class Boutique {
 	}
 	
 	public void eraseCommande(){
-		System.out.println("Id de la commande à suppimer : ");
-		int idToErase = Integer.parseInt(input.nextLine());
-		System.out.println("Êtes vous sûr ? [Y/N]");
-		String answer = input.nextLine();
+		int idToErase = -1 ;
+		String answer = "";
+		while ( idToErase == -1 ){
+			try{
+				System.out.println("Id de la commande à supprimer : ");
+				idToErase = Integer.parseInt(input.nextLine());
+				System.out.println("Êtes vous sûr ? [Y/N]");
+				answer = input.nextLine();
+			}catch(NumberFormatException e){
+				idToErase = -1 ; 
+			}
+		}
 		switch(answer){
 			case "Y":
 				commandes.remove(findCommandeByID(idToErase));
