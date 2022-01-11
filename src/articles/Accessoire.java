@@ -16,9 +16,8 @@ public class Accessoire extends Article{
     /** 
      * @return String
      */
-    @Override
     public String toString(){
-        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
+        return super.toString() + "  Cible : " + cible; 
     }
 
 	
@@ -36,5 +35,10 @@ public class Accessoire extends Article{
     public void setCible(String cible) {
 		this.cible = cible;
 	}
+    
+	public String toCSV() {
+		return "accessoire;" + super.toCSV() + ";" + cible + "\n";
+	}; 
+
     
 }

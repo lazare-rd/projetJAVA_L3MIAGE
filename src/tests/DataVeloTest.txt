@@ -1,0 +1,2 @@
+10;3;Gourde;Decathlon;loisir
+20;5;Pochette;Go-Sport;performance

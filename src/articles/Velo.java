@@ -16,9 +16,8 @@ public class Velo extends Article{
     /** 
      * @return String
      */
-    @Override
     public String toString(){
-        return id + " ; " + prix + " ; " + stock + " ; " + nom + " ; " + marque ; 
+        return super.toString() + "  Discipline : " + discipline; 
     }
 
 	
@@ -36,4 +35,13 @@ public class Velo extends Article{
     public void setDiscipline(String discipline) {
 		this.discipline = discipline;
 	}    
+    
+    /**
+	 * 
+	 * @return String
+	 */
+	public String toCSV() {
+		return "velo;" + super.toCSV() + ";" + discipline + "\n";
+	}; 
+
 }
